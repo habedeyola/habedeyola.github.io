@@ -1,0 +1,96 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style type="text/css">* {cursor: url(http://cur.cursors-4u.net/nature/nat-10/nat927.ani), url(http://cur.cursors-4u.net/nature/nat-10/nat927.png), auto !important;}</style><a href="http://www.cursors-4u.com/cursor/2011/10/28/animated-nyan-cat-rainbow.html" target="_blank" title="Animated Rainbow Nyan Cat"><img src="http://cur.cursors-4u.net/cursor.png" border="0" alt="Animated Rainbow Nyan Cat" style="position:absolute; top: 0px; right: 0px;" /></a>
+    <style>
+        body {
+            font-family: cursive;
+        }
+        #myVideo {
+            position: fixed;
+            width: 12s00px;
+            height: 100%;
+            margin: auto auto; /* Will not center vertically and won't work in IE6/7. */
+            left: 0;
+            right: 0;
+            z-index: 0;
+        }
+        .image {
+            /* position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            margin:-60px 0 0 -60px; */
+            -webkit-animation:spin 8s linear infinite;
+            -moz-animation:spin 8s linear infinite;
+            animation:spin 8s linear infinite;
+        }
+        .hero {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        #app {
+            /* position: fixed; */
+            /* bottom: 0; */
+            z-index: 2;
+            color: #f1f1f1;
+        }
+        @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+        @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="vid.mp4" type="video/mp4"/>
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="hero">
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div id="app">
+                    <h1 class="text-center">Habede Yola Sekar Nanda Prima heheheh :)</h1>
+                    <br>
+                    <br>
+                    <center><img v-on:click="reverseMessage" src="gambar.png" class="img-responsive image" height="300px"></center>
+                    <br>
+                    <br>
+                    <h1 class="text-center">🎂 Semoga semakin semakin 🎉</h1>
+                    <br>
+                    <br>
+                    <h3 class="text-center">{{ msg }}</h3>
+                    <br>
+                    <p class="text-center">- @naufalfazanadi -</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                counter: 0,
+                msg: "Klik gambarnya biar ada lagunya"
+            },
+            methods: {
+                reverseMessage: function () {
+                    this.counter++
+                    this.msg = "Gambar diklik sebanyak " + this.counter + " kali"
+                    var audio = new Audio('backsound.mp3') // path to file
+                    audio.play() 
+                }
+            }
+        })
+    </script>
+</body>
+</html>
