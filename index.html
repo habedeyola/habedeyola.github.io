@@ -62,6 +62,7 @@
     </style>
 </head>
 <body>
+    
     <video autoplay muted loop id="myVideo">
         <source src="vid.mp4" type="video/mp4"/>
         Your browser does not support HTML5 video.
@@ -97,15 +98,25 @@
             el: '#app',
             data: {
                 counter: 0,
-                msg: "Klik gambarnya biar ada lagunya"
+                msg: ""
             },
             methods: {
                 reverseMessage: function () {
-                    this.counter++
-                    this.msg = "Gambar diklik sebanyak " + this.counter + " kali"
-                    var audio = new Audio('backsound.mp3') // path to file
-                    audio.play() 
+                    if (this.counter == 0) {
+                        this.counter++
+                        var bg = new Audio('bgmusic.mp3') // path to file
+                        bg.play()
+                        this.msg = "Klik lagi biar ada suaranya"
+                    } else {
+                        this.msg = "Gambar diklik sebanyak " + this.counter + " kali"
+                        var audio = new Audio('backsound.mp3') // path to file
+                        audio.play() 
+                        this.counter++
+                    }
                 }
+            },
+            created () {
+                this.msg = "Klik gambarnya biar ada musiknya"
             }
         })
     </script>
