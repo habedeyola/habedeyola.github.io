@@ -34,6 +34,17 @@
             -moz-animation:spin 10s linear infinite;
             animation:spin 10s linear infinite;
         }
+        .image2 {
+            /* position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            margin:-60px 0 0 -60px; */
+            -webkit-animation:bspin 10s linear infinite;
+            -moz-animation:bspin 10s linear infinite;
+            animation:bspin 10s linear infinite;
+        }
         .hero {
             position: fixed;
             background: rgba(0, 0, 0, 0.5);
@@ -55,32 +66,39 @@
                 width: 200px;
                 height: 200px;
             }
+            .center { margin: 0 auto; width: 400px; }
         }
         @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
         @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
         @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+        @-moz-keyframes bspin { 100% { -moz-transform: rotate(-360deg); } }
+        @-webkit-keyframes bspin { 100% { -webkit-transform: rotate(-360deg); } }
+        @keyframes bspin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
     </style>
 </head>
 <body>
-    
-    <video autoplay muted loop id="myVideo">
+    <video autoplay muted loop id="myVideo" class="center">
         <source src="vid.mp4" type="video/mp4"/>
         Your browser does not support HTML5 video.
     </video>
-    <div class="hero">
+    <div class="hero"  style="overflow: auto">
         <div class="container h-100">
             <div class="row h-100 justify-content-center align-items-center">
                 <div id="app">
-                    <h1 class="text-center">Habede Yola Nanda Sekar Prima heheheh :)</h1>
+                    <br>
+                    <h1 class="text-center">Cieee 22 tahun Habede dulu ah Yola Nanda Sekar Prima ehehe</h1>
                     <br>
                     <br>
-                    <center><img v-on:click="reverseMessage" src="gambar.png" class="img-responsive image" height="300px"></center>
+                    <center><img v-on:click="reverseMessage" src="gambar.png" class="img-responsive" :class="{ image: isActive, image2: !isActive }" height="300px"></center>
+                    <br>
+                    <h5 class="text-center" v-on:click="reverseSpin">klik ini buat puter ke arah lain</h5>
                     <br>
                     <br>
-                    <h1 class="text-center">🎂 Semoga semakin semakin 🎉</h1>
+                    <h1 class="text-center">🎂 Semoga semakin semakin semakin 🎉</h1>
                     <br>
                     <br>
-                    <h3 class="text-center">{{ msg }}</h3>
+                    <h3 class="text-center" v-html="msg"></h3>
                     <br>
                     <!-- <p class="text-center">- Dari @naufalfazanadi -</p> -->
                 </div>
@@ -98,18 +116,49 @@
             el: '#app',
             data: {
                 counter: 0,
-                msg: ""
+                msg: "",
+                isActive: true
             },
             methods: {
+                reverseSpin: function () {
+                    this.isActive = !this.isActive
+                },
                 reverseMessage: function () {
                     if (this.counter == 0) {
                         this.counter++
                         var bg = new Audio('bgmusic.mp3') // path to file
+                        bg.volume = 0.1
+                        bg.loop = true
                         bg.play()
                         this.msg = "Klik lagi biar ada suaranya"
+                    } else if (this.counter > 100) {
+                        this.msg = "Selamat udah gabut klik gambar > 100 kali wkwk<br>Gambar diklik sebanyak " + this.counter + " kali"
+                        var audio = new Audio('backsound.mp3') // path to file
+                        audio.volume = 1
+                        audio.play() 
+                        this.counter++
+                    } else if (this.counter > 50) {
+                        this.msg = "Mantap rajin pisaann anaknya teh<br>Gambar diklik sebanyak " + this.counter + " kali"
+                        var audio = new Audio('backsound.mp3') // path to file
+                        audio.volume = 1
+                        audio.play() 
+                        this.counter++
+                    } else if (this.counter > 25) {
+                        this.msg = "Yo mangat baru " + this.counter + "<br>Gambar diklik sebanyak " + this.counter + " kali"
+                        var audio = new Audio('backsound.mp3') // path to file
+                        audio.volume = 1
+                        audio.play() 
+                        this.counter++
+                    } else if (this.counter > 5) {
+                        this.msg = "Ayoo tambah teruss<br>Gambar diklik sebanyak " + this.counter + " kali"
+                        var audio = new Audio('backsound.mp3') // path to file
+                        audio.volume = 1
+                        audio.play() 
+                        this.counter++
                     } else {
                         this.msg = "Gambar diklik sebanyak " + this.counter + " kali"
                         var audio = new Audio('backsound.mp3') // path to file
+                        audio.volume = 1
                         audio.play() 
                         this.counter++
                     }
